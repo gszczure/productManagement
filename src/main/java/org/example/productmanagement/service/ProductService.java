@@ -2,6 +2,7 @@ package org.example.productmanagement.service;
 
 import org.example.productmanagement.dto.request.ProductRequestDto;
 import org.example.productmanagement.dto.response.ProductResponseDto;
+import org.example.productmanagement.exception.ProductNotFoundException;
 import org.example.productmanagement.mapper.ProductMapper;
 import org.example.productmanagement.model.Product;
 import org.example.productmanagement.repository.ProductRepository;
@@ -25,8 +26,7 @@ public class ProductService {
 
     public ProductResponseDto getById(Long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
-        //TODO: Zrobic wlasny wyjatek
+                .orElseThrow(() -> new ProductNotFoundException("Product not found"));
 
         return ProductMapper.toDto(product);
     }
@@ -40,9 +40,7 @@ public class ProductService {
 
     public ProductResponseDto update(Long id, ProductRequestDto productRequestDto) {
         Product existingProduct = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
-        //TODO: Zrobic wlasny wyjatek
-
+                .orElseThrow(() -> new ProductNotFoundException("Product not found"));
 
         Product updatedProduct = existingProduct.toBuilder()
                 .name(productRequestDto.name())
