@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ProductIntegrationTest {
+class ProductIntegrationTest extends IntegrationTests {
 
     private static final BigDecimal PRICE = BigDecimal.valueOf(100);
     private static final BigDecimal UPDATED_PRICE = BigDecimal.valueOf(200);
