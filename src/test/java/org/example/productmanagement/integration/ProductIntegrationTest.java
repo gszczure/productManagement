@@ -27,6 +27,12 @@ class ProductIntegrationTest {
     void setUp() {
         RestAssured.port = port;
         RestAssured.basePath = BASE_PATH;
+
+        RestAssured.requestSpecification = RestAssured
+                .given()
+                .auth()
+                .preemptive()
+                .basic("admin", "admin");
     }
 
     @Test
