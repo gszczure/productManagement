@@ -23,7 +23,6 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //TODO: przy postgresSQL zrobic UUID zamiast Longa
 
     @NotBlank(message = "Name cannot be empty")
     private String name;
